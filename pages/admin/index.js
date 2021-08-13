@@ -22,23 +22,29 @@ export default function AdminPostsPage(props) {
     );
 }
 
-function PostList() {
+function PostList() {       // The PostList required a query to the ‘posts’ sub collection under the currently authenticated user.
     const ref = firestore.collection('users').doc(auth.currentUser.uid).collection('posts');
+    // ^^ we make a reference to the current user document then the ‘posts’ sub collection under it
+    // From that ref we can then order by the createdAt timestamp 
     const query = ref.orderBy('createdAt');
+    // then use the useCollection hook from react-firebase-hooks to read that collection in realtime
     const [querySnapshot] = useCollection(query);
-
+    // Then take the query snapshot and map it’s documents down to the document data.
     const posts = querySnapshot?.docs.map((doc) => doc.data());
+    // we want the full query snapshot if we want to add additional controls like the ability to delete a document.
 
+    // we want to return/show the document data here in the UI 
+    //... so we will include it in the return that data in the <PostFeed> component that we created earlier 
     return (
         <>
         <h1>Manage your Posts</h1>
-        <PostFeed posts={posts} admin />
+        <PostFeed posts={posts} admin /> {/* We pass to this component the {posts} value which is the query snapshot ^^ of the current user's 'posts' subcollection*/}
         </>
     );
 }
 
 function CreateNewPost() {
-    const router = useRouter();
+    const router = useRouter();                         // use the next.js router with the useRouter() hook 
     const { username } = useContext(UserContext);
     const [title, setTitle] = useState('');
 
@@ -56,10 +62,10 @@ function CreateNewPost() {
 
     // Tip: give all fields a default value here
         const data = {
-            title,
-            slug,
-            uid,
-            username,
+            title: 'Default Title',
+            slug: 'default-title',
+            uid: 'abc123defaultTOme',
+            username: 'defaultmememan',
             published: false,
             content: '# hello world!',
             createdAt: serverTimestamp(),
@@ -67,7 +73,8 @@ function CreateNewPost() {
             heartCount: 0,
         };
 
-        await ref.set(data);
+        await ref.set(data); // we call ref.set(data) with ^ that formatted (data) ^ to commit the post document to firestore.
+
 
         toast.success('Post created!');
 

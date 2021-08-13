@@ -31,7 +31,7 @@ export default function Navbar() {
                     <button onClick={signOut}>Sign Out</button>
                 </li>
             <li>
-                <Link href="/admin">
+                <Link href="/admin"> {/* Does this need to be passHref? */}
                     <button className="btn-blue">Write Posts</button>
                 </Link>
             </li>
