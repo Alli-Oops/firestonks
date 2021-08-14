@@ -16,7 +16,7 @@ export default function Navbar() {
     }
 
     return (
-    <nav className="navbar">
+        <nav className="navbar">
         <ul>
             <li>
                 <Link href="/">
@@ -30,15 +30,11 @@ export default function Navbar() {
                 <li className="push-left">
                     <button onClick={signOut}>Sign Out</button>
                 </li>
-            <li>
-                <Link href="/admin"> {/* Does this need to be passHref? */}
-                    <button className="btn-blue">Write Posts</button>
-                </Link>
-            </li>
-            <li>
-                <Link href={`/${username}`}>
-                    <img src={user?.photoURL || '/hacker.png'} />
-                </Link>
+                <li>
+                    <Link href="/admin"><button className="btn-blue">Write Posts</button></Link>
+                </li>
+                <li>
+                    <Link href={`/${username}`}><img src={user?.photoURL || '/hacker.png'} /></Link>
                 </li>
             </>
         )}
@@ -46,9 +42,7 @@ export default function Navbar() {
         {/* UNAUTH user is not signed OR has not created username */}
         {!username && (
             <li>
-                <Link href="/enter">
-                <button className="btn-blue">Log in</button>
-                </Link>
+                <Link href="/enter"><button className="btn-blue">Log in</button></Link>
             </li>
             )}
         </ul>

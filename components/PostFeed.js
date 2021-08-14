@@ -14,15 +14,16 @@ function PostItem({ post, admin = false }) {
     // Then we return some basic UI : 
     return (
         <div className="card">
-        <Link href={`/${post.username}`}> {/* This is a Link to the User's Profile */}
+        {/* This is a Link to the User's Profile */}
+        <Link href={`/${post.username}`}>
             <a>
             <strong>By @{post.username}</strong>
             </a>
         </Link>
-
-        <Link href={`/${post.username}/${post.slug}`}> {/* This is a Link to the post title */}
+        {/* This is a Link to the post title */}
+        <Link href={`/${post.username}/${post.slug}`}>
             <h2>
-            <a>{post.title}</a>
+                <a>{post.title}</a>
             </h2>
         </Link>
 

@@ -37,7 +37,7 @@ export async function getStaticPaths() { // this tells next which paths to rende
     const paths = snapshot.docs.map((doc) => {                         // .. then we can map each one of them down into an object that contains the username and slug that would be in the URL or PATH to that page
         const { slug, username } = doc.data();
         return {
-        params: { username, slug },
+            params: { username, slug },
         };
     });
 
@@ -63,33 +63,28 @@ export default function Post(props) {
 
     return (
         <main className={styles.container}>
-        <Metatags title={post.title} description={post.title} />
-        
-        <section>
-            <PostContent post={post} />
-        </section>
+            <Metatags title={post.title} description={post.title} />
+            
+            <section>
+                <PostContent post={post} />
+            </section>
 
-        <aside className="card">
-            <p>
-            <strong>{post.heartCount || 0} 🔥 </strong>
-            </p>
+            <aside className="card">
+                <p>
+                    <strong>{post.heartCount || 0} 🔥 </strong>
+                </p>
 
-            <AuthCheck
-            fallback={
-                <Link href="/enter">
-                <button>🔥  Sign Up</button>
-                </Link>
-            }
-            >
-            <FireButton postRef={postRef} />
-            </AuthCheck>
+                <AuthCheck fallback={
+                    <Link href="/enter"><button>🔥  Sign Up</button></Link>
+                }
+                >
+                    <FireButton postRef={postRef} />
+                </AuthCheck>
 
-            {currentUser?.uid === post.uid && (
-            <Link href={`/admin/${post.slug}`}>
-                <button className="btn-blue">Edit Post</button>
-            </Link>
-            )}
-        </aside>
+                {currentUser?.uid === post.uid && (
+                    <Link href={`/admin/${post.slug}`}><button className="btn-blue">Edit Post</button></Link>
+                )}
+            </aside>
         </main>
     );
 }
