@@ -15,7 +15,7 @@ import toast from 'react-hot-toast';
 export default function AdminPostEdit(props) {
     return (
         <AuthCheck>
-        <PostManager />
+            <PostManager />
         </AuthCheck>
     );
 }
@@ -33,38 +33,39 @@ function PostManager() {
         <main className={styles.container}>
         {post && (
             <>
-            <section>
-                <h1>{post.title}</h1>
-                <p>ID: {post.slug}</p>
+                <section>
+                    <h1>{post.title}</h1>
+                    <p>ID: {post.slug}</p>
 
-                <PostForm postRef={postRef} defaultValues={post} preview={preview} />
-            </section>
+                    <PostForm postRef={postRef} defaultValues={post} preview={preview} />
+                </section>
 
-            <aside>
-                <h3>Tools</h3>
-                <button onClick={() => setPreview(!preview)}>{preview ? 'Edit' : 'Preview'}</button>
-                <Link href={`/${post.username}/${post.slug}`}>
-                <button className="btn-blue">Live view</button>
-                </Link> {/*  */}
-                <DeletePostButton postRef={postRef} />
-            </aside>
+                <aside>
+                    <h3>Tools</h3>
+                    <button onClick={() => setPreview(!preview)}>{preview ? 'Edit' : 'Preview'}</button>
+                    <Link href={`/${post.username}/${post.slug}`}>
+                        <button className="btn-blue">Live view</button>
+                    </Link>
+                    <DeletePostButton postRef={postRef} />
+                </aside>
             </>
         )}
         </main>
     );
 }
 // what is 'content' and where does it come from?
+// where do the errors come from?
 
 function PostForm({ defaultValues, postRef, preview }) {
-    const { register, errors, handleSubmit, formState, reset, watch } = useForm({ defaultValues, mode: 'onChange' });
+    const { register, handleSubmit, reset, watch, formState, errors } = useForm({ defaultValues, mode: 'onChange' });
 
     const { isValid, isDirty } = formState;
 
     const updatePost = async ({ content, published }) => {
         await postRef.update({
-        content,
-        published,
-        updatedAt: serverTimestamp(),
+            content,
+            published,
+            updatedAt: serverTimestamp(),
         });
 
         reset({ content, published });
@@ -83,22 +84,22 @@ function PostForm({ defaultValues, postRef, preview }) {
         <div className={preview ? styles.hidden : styles.controls}>
             <ImageUploader />
 
-            <textarea
-                {...register('content', {
+            <textarea name="content" ref={register({
                     maxLength: { value: 20000, message: 'content is too long' },
                     minLength: { value: 10, message: 'content is too short' },
-                    required: { value: true, message: 'content is required' },
-                })}></textarea>
+                    required: { value: true, message: 'content is required'}
+                })}>
+            </textarea>
 
             {errors.content && <p className="text-danger">{errors.content.message}</p>}
 
             <fieldset>
-            <input className={styles.checkbox} {...register('published')} type="checkbox" />
-            <label>Published</label>
+                <input className={styles.checkbox} name="published" type="checkbox" ref={register} />
+                <label>Published</label>
             </fieldset>
 
             <button type="submit" className="btn-green" disabled={!isDirty || !isValid}>
-            Save Changes
+                Save Changes
             </button>
         </div>
         </form>
@@ -119,7 +120,7 @@ function PostForm({ defaultValues, postRef, preview }) {
 
     return (
         <button className="btn-red" onClick={deletePost}>
-        Delete
+            Delete
         </button>
     );
 }

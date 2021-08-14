@@ -17,7 +17,7 @@ function PostItem({ post, admin = false }) {
         {/* This is a Link to the User's Profile */}
         <Link href={`/${post.username}`}>
             <a>
-            <strong>By @{post.username}</strong>
+                <strong>By @{post.username}</strong>
             </a>
         </Link>
         {/* This is a Link to the post title */}
@@ -29,17 +29,17 @@ function PostItem({ post, admin = false }) {
 
         <footer>
             <span>
-            {wordCount} words. {minutesToRead} min read
+                {wordCount} words. {minutesToRead} min read
             </span>
             <span className="push-left">🔥 {post.heartCount || 0} Fire </span>
-        </footer>   {/* This is a Like count */}
-
+        </footer>
+        {/* This is a Like count */}
         {/* If admin view, show extra controls for user */}
         {admin && (
             <>
             <Link href={`/admin/${post.slug}`}>
                 <h3>
-                <button className="btn-blue">Edit</button>
+                    <button className="btn-blue">Edit</button>
                 </h3>
             </Link>
 

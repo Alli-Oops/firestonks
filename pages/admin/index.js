@@ -62,10 +62,10 @@ function CreateNewPost() {
 
     // Tip: give all fields a default value here
         const data = {
-            title: 'Default Title',
-            slug: 'default-title',
-            uid: 'abc123defaultTOme',
-            username: 'defaultmememan',
+            title,
+            slug,
+            uid,
+            username,
             published: false,
             content: '# hello world!',
             createdAt: serverTimestamp(),
@@ -81,7 +81,6 @@ function CreateNewPost() {
         // Imperative navigation after doc is set
         router.push(`/admin/${slug}`);
     };
-
     return (
         <form onSubmit={createPost}>
         <input
