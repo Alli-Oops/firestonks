@@ -83,7 +83,7 @@ function PostForm({ defaultValues, postRef, preview }) {
 
         <div className={preview ? styles.hidden : styles.controls}>
             <ImageUploader />
-
+            {/* VALIDATION FORM */}
             <textarea name="content" ref={register({
                     maxLength: { value: 20000, message: 'content is too long' },
                     minLength: { value: 10, message: 'content is too short' },

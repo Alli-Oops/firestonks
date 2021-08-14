@@ -20,7 +20,17 @@ export default function Navbar() {
         <ul>
             <li>
                 <Link href="/">
-                    <button className="btn-logo">FEED / Home Page</button>
+                    <button className="btn-logo"> 🏠 Home</button>
+                </Link>
+            </li>
+            <li>
+            <Link href="/">
+                    <button className="btn-logo"> 🚀 Quick 10</button>
+                </Link>
+            </li>
+            <li>
+            <Link href="/">
+                    <button className="btn-logo"> 🔥 Top 10</button>
                 </Link>
             </li>
 
@@ -31,7 +41,7 @@ export default function Navbar() {
                     <button onClick={signOut}>Sign Out</button>
                 </li>
                 <li>
-                    <Link href="/admin"><button className="btn-blue">Write Posts</button></Link>
+                    <Link href="/admin"><button className="btn-blue">Share Due Dilligence</button></Link>
                 </li>
                 <li>
                     <Link href={`/${username}`}><img src={user?.photoURL || '/hacker.png'} /></Link>

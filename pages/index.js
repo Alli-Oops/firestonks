@@ -1,3 +1,4 @@
+// import transparentbanner from '../public/transparentbanner';
 import PostFeed from '../components/PostFeed';
 import Metatags from '../components/Metatags';
 import Loader from '../components/Loader';
@@ -59,12 +60,15 @@ export default function Home(props) {
   return (
     <main>
       <Metatags title="Home Page" description="Get the latest posts on our site" />
-
+      <img src="/transparentbanner.png"></img>
+      <img src="/stonks_meme.png"></img>
       <div className="card card-info">
         <h2> Services </h2>
         <h3> FireStonks.com is A Platform for Sharing Information </h3>
         <p>Sign up for an 👨‍🎤 account, ✍️ share due diligence, then 🔥 fire content created by other users. All public content is server-rendered and search-engine optimized.</p>
-        
+        </div>
+
+        <div className="card card-info">
         <h2> About FireStonks.com </h2>
         <p>Any content posted on Firestonks.com reflects the opinions of only the authors who are associated persons of Firestonks.com and do not reflect the views of Firestonks.com or any of its subsidiaries or affiliates.</p>
         <p>This platform is for independent investors and stock market enthusiasts to share their thoughts, research, and opinions. Content on FireStonk.com is not provided by FireStonks.com. The Firestonks.com platform is intended for informational purposes only, any content on FireStonks.com is not intended to serve as a recommendation to buy or sell any security in a self-directed brokerage account or any other account, and are not an offer or sale of a security.</p>

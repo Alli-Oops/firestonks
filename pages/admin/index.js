@@ -37,7 +37,7 @@ function PostList() {       // The PostList required a query to the ‘posts’ 
     //... so we will include it in the return that data in the <PostFeed> component that we created earlier 
     return (
         <>
-        <h1>Manage your Posts</h1>
+        <h1>Manage your Due Diligence</h1>
         <PostFeed posts={posts} admin /> {/* We pass to this component the {posts} value which is the query snapshot ^^ of the current user's 'posts' subcollection*/}
         </>
     );
@@ -86,7 +86,7 @@ function CreateNewPost() {
         <input
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            placeholder="My Awesome Article!"
+            placeholder="What's Your Play?"
             className={styles.input}
         />
         <p>
