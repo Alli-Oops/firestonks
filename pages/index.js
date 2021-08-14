@@ -1,4 +1,3 @@
-// import transparentbanner from '../public/transparentbanner';
 import PostFeed from '../components/PostFeed';
 import Metatags from '../components/Metatags';
 import Loader from '../components/Loader';
